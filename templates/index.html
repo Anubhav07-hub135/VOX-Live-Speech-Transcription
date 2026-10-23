@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VOX Studio — Speech Transcription</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="#"><span class="mark">V</span><span>VOX <small>STUDIO</small></span></a>
+  <p class="nav-label">WORKSPACE</p><a class="nav active" href="#workspace">◉ &nbsp; Transcription</a>
+  <div class="side-note"><b>Your workspace</b><p>Live speech uses your browser's speech service. Uploaded audio is transcribed locally on your computer using Whisper. The first model download requires internet access.</p></div>
+</aside>
+<main id="workspace">
+<header class="topbar"><div><div class="eyebrow">VOICE WORKSPACE</div><h1>Speech transcription</h1></div><div class="status"><i id="statusDot"></i><span id="statusText">Ready to transcribe</span></div></header>
+<section class="hero"><div><div class="eyebrow light">YOUR WORDS, IN TEXT</div><h2>Capture every thought.</h2><p>Speak live or upload a recording to turn speech into editable text.</p></div><div class="wave" aria-hidden="true">▂ ▅ ▃ ▇ ▄ ▆ ▂ ▅ ▃</div></section>
+<section class="grid">
+<article class="panel">
+  <div class="panel-head"><span class="panel-icon blue">🎙</span><div><h3>Live transcription</h3><p>Use your microphone in real time</p></div></div>
+  <div class="live-box"><div class="mic" id="micEmblem">🎙</div><h3 id="controlTitle">Ready when you are</h3><p id="controlDescription">Allow microphone access, then start speaking.</p><button class="btn primary" id="startButton">Start speaking</button><button class="btn danger" id="stopButton" hidden>Stop session</button></div>
+  <label for="language">Recognition language</label><select id="language"><option value="en-IN" selected>English (India)</option><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option><option value="hi-IN">Hindi</option><option value="es-ES">Spanish</option><option value="fr-FR">French</option></select>
+  <p class="hint">Live recognition accuracy depends on your browser and its speech service.</p>
+</article>
+<article class="panel">
+  <div class="panel-head"><span class="panel-icon purple">↥</span><div><h3>Upload a recording</h3><p>Transcribe an existing file on this computer</p></div></div>
+  <form id="uploadForm">
+    <label class="drop" id="dropZone" for="audioFile"><span class="upload-symbol">↑</span><b>Choose an audio file</b><span>or drag and drop it here</span><small>MP3, WAV, M4A, MP4, WEBM, FLAC, OGG · Max 200 MB</small></label>
+    <input id="audioFile" type="file" accept=".mp3,.mp4,.mpeg,.mpga,.m4a,.wav,.webm,.flac,.ogg,audio/*" hidden>
+    <div class="selected" id="selectedFile" hidden></div>
+    <label for="uploadLanguage">Audio language (optional)</label><select id="uploadLanguage"><option value="">Auto-detect</option><option value="en">English</option><option value="hi">Hindi</option><option value="es">Spanish</option><option value="fr">French</option></select>
+    <label for="transcriptionHint">Names or words to help recognize (optional)</label><input id="transcriptionHint" maxlength="4000" placeholder="e.g. The speaker's name is Anubhav Puhan">
+    <button class="btn primary full" id="uploadButton" type="submit">Transcribe recording</button>
+    <div class="progress" id="uploadProgress" hidden><span></span></div><p class="hint" id="uploadStatus" aria-live="polite">Audio is processed locally after the model is downloaded.</p>
+  </form>
+</article>
+</section>
+<section class="panel transcript-panel"><div class="transcript-head"><div><div class="eyebrow">YOUR OUTPUT</div><h3>Transcript</h3><p>Edit the text, then copy or export it.</p></div><span class="count" id="wordCount">0 words</span></div>
+<textarea id="transcript" placeholder="Your live or uploaded transcript will appear here…" spellcheck="true"></textarea>
+<div class="transcript-footer"><span class="hint" id="emptyHint">No transcript yet</span><div class="actions"><button class="btn secondary" id="clearButton">Clear</button><button class="btn secondary" id="copyButton">Copy text</button><button class="btn primary" id="exportButton">Export TXT ↓</button></div></div>
+</section><footer>VOX Studio · Live and file-based speech transcription</footer>
+</main></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body></html>
