@@ -92,6 +92,11 @@ def file_too_large(_error):
     return jsonify(error="Audio file exceeds the 200 MB upload limit."), 413
 
 
+
 if __name__ == "__main__":
-    # Development server for local use only.
-    app.run(debug=True)
+    import os
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=False
+    )
