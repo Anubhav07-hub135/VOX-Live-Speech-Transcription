@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 200 * 1024 * 1024  # Local upload cap: 200 MB
 
 ALLOWED_EXTENSIONS = {"mp3", "mp4", "mpeg", "mpga", "m4a", "wav", "webm", "flac", "ogg"}
-MODEL_SIZE = os.getenv("WHISPER_MODEL_SIZE", "base")
+MODEL_SIZE = os.getenv("WHISPER_MODEL_SIZE", "tiny")
 DEVICE = os.getenv("WHISPER_DEVICE", "cpu")
 COMPUTE_TYPE = os.getenv("WHISPER_COMPUTE_TYPE", "int8")
 
