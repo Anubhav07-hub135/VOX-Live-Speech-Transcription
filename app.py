@@ -56,8 +56,10 @@ def transcribe_audio():
             temp_path = temp.name
 
         options = {
-            "beam_size": 5,
-            "vad_filter": True,
+            "beam_size": 1,
+            "vad_filter": False,
+            "condition_on_previous_text": False,
+            "cpu_threads": 1,
         }
         if language:
             options["language"] = language
