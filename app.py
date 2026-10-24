@@ -59,7 +59,6 @@ def transcribe_audio():
             "beam_size": 1,
             "vad_filter": False,
             "condition_on_previous_text": False,
-            "cpu_threads": 1,
         }
         if language:
             options["language"] = language
